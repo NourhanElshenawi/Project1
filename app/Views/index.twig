@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+<head>
+    <title>{% block title %}ARaynorDesign Template {% endblock title %}</title>
+    {{ include('head.twig') }}
+    <script type="text/javascript">
+        $(window).load(function() {
+            $('#slider').nivoSlider();
+        });
+    </script>
+</head>
+
+<body>
+<div id="main">
+
+    <div id="menubar">
+        <div id="welcome">
+            <h1><a href="#">Welcome</a></h1>
+        </div><!--close welcome-->
+        <div id="menu_items">
+            <ul id="menu">
+                <li class="current"><a href="index.html">Home</a></li>
+                <li><a href="ourwork.html">Our Work</a></li>
+                <li><a href="/admin">Admin</a></li>
+                {#//////////////////#}
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div><!--close menu-->
+    </div><!--close menubar-->
+
+    <div id="site_content">
+        {% block body %}
+        {% endblock body %}
+    </div><!--close site_content-->
+
+</div><!--close main-->
+
+<div id="footer">
+    <a href="http://validator.w3.org/check?uri=referer">Valid XHTML</a> | <a href="http://fotogrph.com/">Images</a> | <a href="http://www.heartinternet.co.uk/web-hosting/">Web Hosting</a> | website template by <a href="http://www.araynordesign.co.uk">ARaynorDesign</a>
+</div><!--close footer-->
+
+</body>
+</html>
