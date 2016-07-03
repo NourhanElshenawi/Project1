@@ -3,6 +3,7 @@ namespace Nourhan\Controllers;
 
 use Nourhan\Database\DB;
 use Nourhan\Services\Upload;
+use Nourhan\Services\ChangeCarousel;
 
 class MainController extends Controller
 {
@@ -22,17 +23,25 @@ class MainController extends Controller
     public function admin()
     {
         $DB = new DB();
-//        if(isset($_POST['fileToUpload'])){
-//            $upload = new Upload();
-//        }
-
-        echo $this->twig->render('admin.twig');
+        $carouselImages = $DB->getCarousel();
+        $allCarouselImages = $DB->getAllCarousel();
+        echo $this->twig->render('admin.twig', array('carouselImages'=> $carouselImages, 'allCarouselImages'=> $allCarouselImages));
     }
 
     public function upload()
     {
-        $upload = new Upload();
+        if(isset($_POST['submit'])){
+            $upload = new Upload();
+        }  else {
+            if($_POST['included'] == "Included"){
+                $included = 1;
+            } else $included = 0;
+            $DB = new DB();
+            $DB->updateCarousel($_POST['id'], $_POST['position'], $included) ;
+        }
 
-//        echo $this->twig->render('admin.twig');
+        $carouselImages = $DB->getCarousel();
+        $allCarouselImages = $DB->getAllCarousel();
+        echo $this->twig->render('admin.twig', array('carouselImages'=> $carouselImages, 'allCarouselImages'=> $allCarouselImages));
     }
 }
