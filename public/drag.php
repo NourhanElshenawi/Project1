@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>jQuery UI Draggable - Default functionality</title>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<!--    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">-->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
 
     <script src="bower_components/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
@@ -57,22 +57,7 @@
 <div  id="content" class="ui-widget-content" style="height: 400px; background: #1ABB9C ">
     <img class="draggable" src="images/Untitled.png" alt="">
     <img class="draggable" src="images/Untitled.png" alt="">
-<!--    <p>Drag me around</p>-->
-</div>           \
-
-<!--<div>-->
-<!--    <ul id="sortable">-->
-<!--        <li>-->
-<!--            1-->
-<!--        </li>-->
-<!--        <li>-->
-<!--            2-->
-<!--        </li>-->
-<!--        <li>-->
-<!--            3-->
-<!--        </li>-->
-<!--    </ul>-->
-<!--</div>-->
+</div>
 
 <div>
     <ul id="sortable1" class="sortable connectedSortable">

@@ -5,3 +5,60 @@
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/jquery.easing.min.js"></script>
 <script type="text/javascript" src="js/jquery.nivo.slider.pack.js"></script>
+
+
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+
+<script>
+    $.noConflict();
+    jQuery( document ).ready(function( $ ) {
+        $(function() {
+            $( "#sortable1, #sortable2" ).sortable({
+                connectWith: ".connectedSortable"
+            }).disableSelection();
+        });
+    });
+    // Code that uses other library's $ can follow here.
+</script>
+
+<script src="bower_components/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+
+<style>
+    #sortable  li { margin: 3px 3px 3px 0; padding: 1px; float: left; width: 100px; height: 90px; font-size: 4em; text-align: center; }
+    .sortable { list-style-type: none; margin: 0; padding: 0; width: 450px; }
+    .sortable  li { margin: 3px 3px 3px 0; padding: 1px; float: left; width: 100px; height: 90px; font-size: 4em; text-align: center; }
+    .sortable {display: inline-block; width: 100%; border: dashed;}
+</style>
+
+{#<script>#}
+
+    {#$(function() {#}
+        {#$( "#sortable1, #sortable2" ).sortable({#}
+            {#connectWith: ".connectedSortable"#}
+        {#}).disableSelection();#}
+    {#});#}
+
+{#</script>#}
+
+
+
+<script>
+
+
+    $("div").click(function(){
+        alert("The paragraph was clicked.");
+    });
+
+//    $("input").click(function() {
+//        alert("HIIIIIIIII");
+//
+//        var column1RelArray = [];
+//        $('#sortable1 li').each(function(){
+//            alert($(this).attr('id'));
+//        });
+//    });
+
+
+
+
+</script>

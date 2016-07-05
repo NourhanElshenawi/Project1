@@ -77,6 +77,17 @@ class DB
         return $result;
     }
 
+    public function getNotIncludedCarousel()
+    {
+        $stmt = $this->conn->prepare("select * from project1.carousel WHERE included='0' ORDER by POSITION ASC ");
+        $stmt->execute();
+        // set the resulting array to associative
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $result = $stmt->fetchAll();
+
+        return $result;
+    }
+
     public function getAllCarousel()
     {
         $stmt = $this->conn->prepare("select * from project1.carousel");

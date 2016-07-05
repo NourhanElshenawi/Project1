@@ -1,0 +1,61 @@
+{% extends "index.twig" %}
+
+
+{% block body %}
+
+    <form action="/admin2" method="post" enctype="multipart/form-data">
+
+    <div id="banner_image">
+        <div id="slider-wrapper">
+            <div id="slider" class="nivoSlider">
+                {% for image in carouselImages %}
+                    <img src="images/{{ image.name }}" alt="" />
+                {% endfor %}
+            </div><!--close slider-->
+        </div><!--close slider_wrapper-->
+    </div><!--close banner_image-->
+
+    <div class="content_container" style="width: 100%">
+                <ul id="sortable1" class="sortable connectedSortable">
+
+                {% for image in carouselImages %}
+                   <li>
+                       <img src="images/{{ image.name }}" alt="" style="width: 100%; height: 100%;" id="{{ image.id }}"/>
+                       {#<input type='hidden' name='vegi[]' value='{{ image.id }}'/>#}
+                   </li>
+                {% endfor %}
+                </ul>
+    </div>
+
+    <div class="content_container" style="width: 100%">
+        <ul id="sortable2" class="sortable connectedSortable">
+            {% for image in notIncludedCarouselImages %}
+                <li>
+                    <img src="images/{{ image.name }}" alt="" style="width: 100%; height: 100%;"/>
+                    {#<input type='hidden' name='fruits[]' value='{{ image.id }}'/>#}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+        {#<input type='hidden' name='fruits[]' id='fruits[]' value=''/>#}
+
+        <input type="submit" value="Update Carousel" id="go" name="go">
+    </form>
+
+    <div class="content_container" id="write">
+              <p>!!!!</p>
+    </div>
+
+
+
+    <script>
+
+        $( "#go" ).click(function() {
+//        $( this ).slideUp();
+            alert("HI");
+        });
+    </script>
+
+{% endblock body %}
