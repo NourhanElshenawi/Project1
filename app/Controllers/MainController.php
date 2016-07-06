@@ -50,6 +50,20 @@ class MainController extends Controller
         echo $this->twig->render('carousel.twig', array('carouselImages'=> $carouselImages, 'notIncludedCarouselImages'=> $notIncludedCarouselImages));
     }
 
+     //////////////////////
+    public function includeInCarousel()
+    {
+        echo "HIIII";
+        $arr = $_POST['inc'];
+        console.log($arr);
+        $DB = new DB();
+        foreach ($arr as &$imgID) {
+            $DB->includeInCarousel($imgID);
+        }$carouselImages = $DB->getCarousel();
+        $notIncludedCarouselImages = $DB->getNotIncludedCarousel();
+        echo $this->twig->render('home.twig', array('carouselImages'=> $carouselImages, 'notIncludedCarouselImages'=> $notIncludedCarouselImages));
+    }
+   /////////////////////////////
     public function upload()
     {
         if(isset($_POST['submit'])){

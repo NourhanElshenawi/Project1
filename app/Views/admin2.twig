@@ -3,7 +3,7 @@
 
 {% block body %}
 
-    <form action="/admin2" method="post" enctype="multipart/form-data">
+    {#<form action="" method="post" enctype="multipart/form-data">#}
 
     <div id="banner_image">
         <div id="slider-wrapper">
@@ -31,7 +31,7 @@
         <ul id="sortable2" class="sortable connectedSortable">
             {% for image in notIncludedCarouselImages %}
                 <li>
-                    <img src="images/{{ image.name }}" alt="" style="width: 100%; height: 100%;"/>
+                    <img src="images/{{ image.name }}" alt="" style="width: 100%; height: 100%;" id="{{ image.id }}"/>
                     {#<input type='hidden' name='fruits[]' value='{{ image.id }}'/>#}
                 </li>
             {% endfor %}
@@ -39,23 +39,61 @@
     </div>
 
 
-        {#<input type='hidden' name='fruits[]' id='fruits[]' value=''/>#}
+        <input type='hidden' name='included' id='included' value=''/>
 
         <input type="submit" value="Update Carousel" id="go" name="go">
-    </form>
+    {#</form>#}
 
     <div class="content_container" id="write">
               <p>!!!!</p>
+    </div>
+
+    <div id="test">
+        <p id="123">HELLOOO
+        <p>DD</p>
+        </p>
     </div>
 
 
 
     <script>
 
+        var included = [];
+        console.log(included);
+
         $( "#go" ).click(function() {
-//        $( this ).slideUp();
-            alert("HI");
+
+            $( "#sortable1" ).children().children().each(function( index ) {
+                console.log( index + " I : " + $( this).attr("id") );
+                included.push($( this).attr("id"));
+
+//                $("#included").html($( this).attr("id"));
+                $.ajax({
+                    url: 'test.php'
+                })
+
+//                $.post( "test.php");
+//                    $.post('test', 'inc=' + included, function (response) {
+//                        alert(response);
+//                    });
+
+
+            });
+
+//            console.log($("#included").text());
+
+
+            $( "#sortable2" ).children().children().each(function( index ) {
+                console.log( index + " NI : " + $( this).attr("id") );
+            });
+
+
+            console.log(included);
         });
+
+
+
+
     </script>
 
 {% endblock body %}

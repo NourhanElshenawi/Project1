@@ -122,6 +122,31 @@ class DB
         }
     }
 
+
+    public function includeInCarousel($id)
+    {
+        $stmt = $this->conn->prepare("insert into project1.carousel WHERE id = ? (included) VALUES (?)");
+
+        try{
+            $stmt->bindValue(1, $id);
+            $stmt->bindValue(2, "1");
+            $stmt->execute();
+        } catch (Exception $e) {
+        }
+    }
+
+    public function removeFromnCarousel($id)
+    {
+        $stmt = $this->conn->prepare("insert into project1.carousel WHERE id = ? (included) VALUES (?)");
+
+        try{
+            $stmt->bindValue(1, $id);
+            $stmt->bindValue(2, "0");
+            $stmt->execute();
+        } catch (Exception $e) {
+        }
+    }
+
     public function getCarouselImage($id)
     {
         $stmt = $this->conn->prepare("select * from project1.carousel WHERE id = ?");

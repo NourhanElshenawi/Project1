@@ -16,6 +16,8 @@ $router->post('/car', 'MainController', 'car');
 
 $router->post('/admin', 'MainController', 'upload');
 
+$router->post('/test', 'MainController', 'includeInCarousel');
+
 ////See inside $router
 //echo "<pre>";
 //print_r($router);
