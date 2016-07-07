@@ -3,7 +3,7 @@
 
 {% block body %}
 
-    {#<form action="" method="post" enctype="multipart/form-data">#}
+    <form action="" method="post" enctype="multipart/form-data">
 
     <div id="banner_image">
         <div id="slider-wrapper">
@@ -16,8 +16,8 @@
     </div><!--close banner_image-->
 
     <div class="content_container" style="width: 100%">
+        <p class="title">Include in Carousel</p>
                 <ul id="sortable1" class="sortable connectedSortable">
-
                 {% for image in carouselImages %}
                    <li>
                        <img src="images/{{ image.name }}" alt="" style="width: 100%; height: 100%;" id="{{ image.id }}"/>
@@ -28,6 +28,7 @@
     </div>
 
     <div class="content_container" style="width: 100%">
+        <p class="title">Remove from the Carousel</p>
         <ul id="sortable2" class="sortable connectedSortable">
             {% for image in notIncludedCarouselImages %}
                 <li>
@@ -38,11 +39,19 @@
         </ul>
     </div>
 
+        <div class="content_container" style="width: 100%">
+            <p class="title">Delete from Database</p>
+            <ul id="sortable3" class="sortable connectedSortable">
+
+            </ul>
+        </div>
+
+
 
         <input type='hidden' name='included' id='included' value=''/>
 
         <input type="submit" value="Update Carousel" id="go" name="go">
-    {#</form>#}
+    </form>
 
     <div class="content_container" id="write">
               <p>!!!!</p>
@@ -59,6 +68,9 @@
     <script>
 
         var included = [];
+        var notIncluded = [];
+        var removePictures = [];
+        var position = 1;
         console.log(included);
 
         $( "#go" ).click(function() {
@@ -66,27 +78,56 @@
             $( "#sortable1" ).children().children().each(function( index ) {
                 console.log( index + " I : " + $( this).attr("id") );
                 included.push($( this).attr("id"));
+                console.log("POSITION: " + position);
 
 //                $("#included").html($( this).attr("id"));
                 $.ajax({
-                    url: 'test.php'
+                    type: "GET",
+                    url: 'test',
+                    data: {
+                        key1: included,
+                        position: position
+                    },
+                    success: function(msg){
+                        console.log('WOW' + msg);
+                    }
                 })
-
-//                $.post( "test.php");
-//                    $.post('test', 'inc=' + included, function (response) {
-//                        alert(response);
-//                    });
-
-
+                position++;
+                console.log("POSITION: " + position);
             });
-
-//            console.log($("#included").text());
 
 
             $( "#sortable2" ).children().children().each(function( index ) {
                 console.log( index + " NI : " + $( this).attr("id") );
+                notIncluded.push($( this).attr("id"));
+
+                $.ajax({
+                    type: "GET",
+                    url: 'remove',
+                    data: {
+                        key1: notIncluded
+                    },
+                    success: function(msg){
+                        console.log('WOW' + msg);
+                    }
+                })
             });
 
+            $( "#sortable3" ).children().children().each(function( index ) {
+                console.log( index + " DELETE : " + $( this).attr("id") );
+                removePictures.push($( this).attr("id"));
+
+                $.ajax({
+                    type: "GET",
+                    url: 'delete',
+                    data: {
+                        key1: removePictures
+                    },
+                    success: function(msg){
+                        console.log('WOW' + msg);
+                    }
+                })
+            });
 
             console.log(included);
         });

@@ -54,16 +54,61 @@ class MainController extends Controller
     public function includeInCarousel()
     {
         echo "HIIII";
-        $arr = $_POST['inc'];
-        console.log($arr);
+//        $arr = $_POST['inc'];
+        $incl = $_GET['key1'];
+        echo ".........";
+//        var_dump($_GET);
+        $position = $_GET['position'];
+        echo "ID: ".$incl;
+        echo "POSITION".$position;
+//        echo "ID: "+$incl;
+//        echo "POSITION: "+$position;
         $DB = new DB();
-        foreach ($arr as &$imgID) {
-            $DB->includeInCarousel($imgID);
-        }$carouselImages = $DB->getCarousel();
+            $DB->includeInCarousel($incl, $position);
+
+        $carouselImages = $DB->getCarousel();
         $notIncludedCarouselImages = $DB->getNotIncludedCarousel();
-        echo $this->twig->render('home.twig', array('carouselImages'=> $carouselImages, 'notIncludedCarouselImages'=> $notIncludedCarouselImages));
+        echo $this->twig->render('admin2.twig', array('carouselImages'=> $carouselImages, 'notIncludedCarouselImages'=> $notIncludedCarouselImages));
     }
    /////////////////////////////
+
+
+    //////////////////////
+    public function removeFromCarousel()
+    {
+        echo "RIIII";
+        $notIncl = $_GET['key1'];
+
+        echo ".........";
+//        echo "ID: ".$notIncl;
+//        echo "POSITION: "+$position;
+        $DB = new DB();
+        $DB->removeFromCarousel($notIncl);
+
+        $carouselImages = $DB->getCarousel();
+        $notIncludedCarouselImages = $DB->getNotIncludedCarousel();
+        echo $this->twig->render('admin2.twig', array('carouselImages'=> $carouselImages, 'notIncludedCarouselImages'=> $notIncludedCarouselImages));
+    }
+    /////////////////////////////
+
+
+    public function deleteFromCarousel()
+    {
+        echo "DIIII";
+        $del = $_GET['key1'];
+
+        echo ".........";
+//        echo "ID: ".$notIncl;
+//        echo "POSITION: "+$position;
+        $DB = new DB();
+        $DB->deleteCarouselImage($del);
+
+        $carouselImages = $DB->getCarousel();
+        $notIncludedCarouselImages = $DB->getNotIncludedCarousel();
+        echo $this->twig->render('admin2.twig', array('carouselImages'=> $carouselImages, 'notIncludedCarouselImages'=> $notIncludedCarouselImages));
+    }
+    /////////////////////////////
+
     public function upload()
     {
         if(isset($_POST['submit'])){

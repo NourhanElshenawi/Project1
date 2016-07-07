@@ -16,7 +16,9 @@ $router->post('/car', 'MainController', 'car');
 
 $router->post('/admin', 'MainController', 'upload');
 
-$router->post('/test', 'MainController', 'includeInCarousel');
+$router->get('/test', 'MainController', 'includeInCarousel');
+$router->get('/remove', 'MainController', 'removeFromCarousel');
+$router->get('/delete', 'MainController', 'deleteFromCarousel');
 
 ////See inside $router
 //echo "<pre>";

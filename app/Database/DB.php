@@ -123,25 +123,28 @@ class DB
     }
 
 
-    public function includeInCarousel($id)
+    public function includeInCarousel($id, $position)
     {
-        $stmt = $this->conn->prepare("insert into project1.carousel WHERE id = ? (included) VALUES (?)");
+        $stmt = $this->conn->prepare("update project1.carousel set included = ?, POSITION = ? WHERE id = ? ");
 
         try{
-            $stmt->bindValue(1, $id);
-            $stmt->bindValue(2, "1");
+            $stmt->bindValue(1, "1");
+            $stmt->bindValue(2, $position);
+            $stmt->bindValue(3, $id);
             $stmt->execute();
         } catch (Exception $e) {
         }
     }
 
-    public function removeFromnCarousel($id)
+    public function removeFromCarousel($id)
     {
-        $stmt = $this->conn->prepare("insert into project1.carousel WHERE id = ? (included) VALUES (?)");
+        $stmt = $this->conn->prepare("update project1.carousel set included = ?, POSITION = ? WHERE id = ? ");
 
+        echo "ID: ".$id;
         try{
-            $stmt->bindValue(1, $id);
-            $stmt->bindValue(2, "0");
+            $stmt->bindValue(1, "0");
+            $stmt->bindValue(2, null);
+            $stmt->bindValue(3, $id);
             $stmt->execute();
         } catch (Exception $e) {
         }
@@ -187,7 +190,7 @@ class DB
 
     }
 
-    public function removeCarouselImage($id)
+    public function deleteCarouselImage($id)
     {
         $stmt = $this->conn->prepare("delete from project1.carousel WHERE id = ?");
         $stmt->bindValue(1,$id);

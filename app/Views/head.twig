@@ -13,7 +13,7 @@
     $.noConflict();
     jQuery( document ).ready(function( $ ) {
         $(function() {
-            $( "#sortable1, #sortable2" ).sortable({
+            $( "#sortable1, #sortable2, #sortable3" ).sortable({
                 connectWith: ".connectedSortable"
             }).disableSelection();
         });
@@ -26,8 +26,9 @@
 <style>
     #sortable  li { margin: 3px 3px 3px 0; padding: 1px; float: left; width: 100px; height: 90px; font-size: 4em; text-align: center; }
     .sortable { list-style-type: none; margin: 0; padding: 0; width: 450px; }
-    .sortable  li { margin: 3px 3px 3px 0; padding: 1px; float: left; width: 100px; height: 90px; font-size: 4em; text-align: center; }
-    .sortable {display: inline-block; width: 100%; border: dashed;}
+    .sortable  li { margin: 3px 3px 3px 0; padding: 1px; float: left; width: 100px; height: 90px; font-size: 4em;  text-align: center; }
+    .sortable {display: inline-block; width: 100%; height: 90px; border: dashed;}
+    .sortable .title {font-size: small;}
 </style>
 
 {#<script>#}
